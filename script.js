@@ -4,7 +4,7 @@ let editingPostId = null;
 // Завантаження постів із db.json
 async function loadPosts() {
     try {
-        const response = await fetch('http://localhost:3000/posts');
+        const response = await fetch('https://semi-project4.onrender.com/posts');
         posts = await response.json();
         renderPosts();
     } catch (error) {
@@ -35,7 +35,7 @@ async function savePost() {
         const post = posts.find(p => p.id === editingPostId);
         post.title = title;
         post.content = content;
-        await fetch(`http://localhost:3000/posts/${editingPostId}`, {
+        await fetch(`https://semi-project4.onrender.com/posts/${editingPostId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(post)
@@ -49,7 +49,7 @@ async function savePost() {
             content
         };
         posts.push(newPost);
-        await fetch('http://localhost:3000/posts', {
+        await fetch('https://semi-project4.onrender.com/posts', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newPost)
@@ -74,7 +74,7 @@ function editPost(id) {
 // Видалення посту
 async function deletePost(id) {
     posts = posts.filter(p => p.id !== id);
-    await fetch(`http://localhost:3000/posts/${id}`, {
+    await fetch(`https://semi-project4.onrender.com/posts/${id}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     }).catch(error => console.error('Помилка видалення:', error));
