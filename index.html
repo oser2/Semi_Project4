@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .post-form, .post {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .post-form input, .post-form textarea {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .post-form button {
+            background: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .post-form button:hover {
+            background: #218838;
+        }
+        .post h3 {
+            margin: 0 0 10px;
+        }
+        .post p {
+            margin: 0 0 10px;
+        }
+        .post button {
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .post button.edit {
+            background: #007bff;
+        }
+        .post button.edit:hover {
+            background: #0056b3;
+        }
+        .post button:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-form">
+        <h2>Новий пост</h2>
+        <input type="text" id="title" placeholder="Заголовок">
+        <textarea id="content" placeholder="Контент" rows="4"></textarea>
+        <button onclick="savePost()">Опублікувати</button>
+    </div>
+    <div id="posts"></div>
+
+    <script id="post-template" type="text/x-handlebars-template">
+        {{#each posts}}
+        <div class="post" data-id="{{id}}">
+            <h3>{{title}}</h3>
+            <p>{{content}}</p>
+            <button class="edit" onclick="editPost('{{id}}')">Редагувати</button>
+            <button onclick="deletePost('{{id}}')">Видалити</button>
+        </div>
+        {{/each}}
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
